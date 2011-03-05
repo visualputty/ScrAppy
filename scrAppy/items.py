@@ -9,6 +9,6 @@ class ScrAppyItem(Item):
     # define the fields for your item here like:
     title = Field()
     appID = Field()
-    image_url = Field()
+    image_urls = Field()
     images = Field()
     pass

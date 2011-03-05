@@ -8,11 +8,11 @@ class ITunesSpider(CrawlSpider):
     name = "itunes"
     allowed_domains = ['itunes.apple.com']
 
-    start_urls = ['http://itunes.apple.com/us/genre/ios-navigation/id6010?mt=8&letter=A']
+    start_urls = ['http://itunes.apple.com/us/genre/ios-utilities/id6002?mt=8']
     
     rules = (
         # Extract all the app pages
-        Rule(SgmlLinkExtractor(allow=(r'.*/app/.*',), unique=True), 'parse_app', follow=True),
+        Rule(SgmlLinkExtractor(allow=(r'.*/app/.*',), deny=(r'itms.*',), unique=True), 'parse_app', follow=True),
         # Find the different numbered pages:
         Rule(SgmlLinkExtractor(allow=(r'.*letter=[A-Z#]$',)), follow=True),
         Rule(SgmlLinkExtractor(allow=(r'.*page=[0-9]+#page$',)), follow=True),
@@ -26,6 +26,7 @@ class ITunesSpider(CrawlSpider):
         image_url = hxs.select('//div[@class="artwork"]/img[@width="175"]/@src').extract()[0]
         appID = response.url.split("/")[-1].split("?")[0]
         app['title'] = title
-        app['image_url'] = image_url
+        app['image_urls'] = [image_url]
         app['appID'] = appID
         self.log('App: %s' % app)
+        return [ app ]

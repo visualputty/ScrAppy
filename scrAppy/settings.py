@@ -15,7 +15,12 @@ DEFAULT_ITEM_CLASS = 'scrAppy.items.ScrappyItem'
 USER_AGENT = '%s/%s' % (BOT_NAME, BOT_VERSION)
 
 ITEM_PIPELINES = ['scrapy.contrib.pipeline.images.ImagesPipeline']
-IMAGES_STORE = 's3://scrAppy-images/'
+IMAGES_STORE = 's3://scrappy-images/'
+#IMAGES_STORE = '/tmp/test'
 AWS_ACCESS_KEY_ID = 'AKIAJMIAWQXIBGHOL2HA'
-AWS_SECRET_ACCESS_KEY = ''
+AWS_SECRET_ACCESS_KEY = '' # Imported from secrets.py
 
+try:
+    from secrets import *
+except ImportError:
+    pass
