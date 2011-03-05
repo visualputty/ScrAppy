@@ -5,7 +5,10 @@
 
 from scrapy.item import Item, Field
 
-class ScrappyItem(Item):
+class ScrAppyItem(Item):
     # define the fields for your item here like:
-    # name = Field()
+    title = Field()
+    appID = Field()
+    image_url = Field()
+    images = Field()
     pass

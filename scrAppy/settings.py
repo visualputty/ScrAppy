@@ -14,3 +14,8 @@ NEWSPIDER_MODULE = 'scrAppy.spiders'
 DEFAULT_ITEM_CLASS = 'scrAppy.items.ScrappyItem'
 USER_AGENT = '%s/%s' % (BOT_NAME, BOT_VERSION)
 
+ITEM_PIPELINES = ['scrapy.contrib.pipeline.images.ImagesPipeline']
+IMAGES_STORE = 's3://scrAppy-images/'
+AWS_ACCESS_KEY_ID = 'AKIAJMIAWQXIBGHOL2HA'
+AWS_SECRET_ACCESS_KEY = ''
+
